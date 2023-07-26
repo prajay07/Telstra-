@@ -1,0 +1,173 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/):
+
+Current Mongosh Log ID: 64c0b8e5c2f9b98cb6e99442
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.1
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.1
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-07-26T09:40:38.514+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> db.product.find()
+
+test> show dbs
+admin      40.00 KiB
+config    108.00 KiB
+learning  112.00 KiB
+local      40.00 KiB
+test> db.learning.find()
+
+test> use learning
+switched to db learning
+learning> db.learning.find()
+
+learning> db.employee.find()
+[
+  {
+    _id: ObjectId("64c09d1519bb53c9b8b7d10c"),
+    name: 'rahul',
+    department: 'hr',
+    age: 22
+  },
+  {
+    _id: ObjectId("64c0a10219bb53c9b8b7d10d"),
+    phoneno: 15248913,
+    adress: 'gardan mumbai'
+  },
+  {
+    _id: ObjectId("64c0a241a0897c24444bfbfa"),
+    name: 'ramesh',
+    age: 24
+  },
+  {
+    _id: ObjectId("64c0a47fa0897c24444bfbfb"),
+    name: 'suresh',
+    age: 25,
+    dept: 'teacher'
+  },
+  {
+    _id: ObjectId("64c0a47fa0897c24444bfbfc"),
+    name: 'ramesh',
+    age: 24,
+    dept: 'manager'
+  },
+  {
+    _id: ObjectId("64c0a47fa0897c24444bfbfd"),
+    name: 'ganesh',
+    age: 26,
+    dept: 'gnt'
+  }
+]
+learning> db.product.find()
+[
+  {
+    _id: 1,
+    name: 'xphone',
+    price: 799,
+    spec: { ram: 4, screen: 6.5, cpu: 2.66 },
+    color: [ 'white', 'black', 'green' ],
+    storage: [ 64, 128, 256 ]
+  },
+  {
+    _id: 2,
+    name: 'xtablet',
+    price: 799,
+    spec: { ram: 4, screen: 6.5, cpu: 2.66 },
+    color: [ 'white', 'blue', 'yellow' ],
+    storage: [ 64, 128, 256 ]
+  }
+]
+learning> db.products.insertMany([ { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256]}, { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512]}])
+{ acknowledged: true, insertedIds: { '0': 1, '1': 2 } }
+learning> db.products.insertMany([{_id:1,name:"laptop",category:"electronics",price:20000,releasedate:ISODate("2011-05-14")},{_id:2,name:"mobile",category:"learning> db.products.insertMany([{_id:1,name:"laptop",category:"electronics",price:20000,releasedate:ISODate("2011-05-14")},{_id:2,name:"mobile",category:"electronics",price:40000,releasedate:ISODate("2012-09-15")},{_id:3,name:"prada",category:"clothes",price:80000,releasedate:ISODate("2019-08-24")},{_id:4,name:"fendi",category:"clothes",price:2000,releasedate:ISODate("2021-09-12")},{_id:5,name:"airforce-1",category:"shoes",price:2000,releasedate:ISODate("2022-03-14")}])
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: learning.products index: _id_ dup key: { _id: 1 }
+Result: BulkWriteResult {
+  insertedCount: 0,
+  matchedCount: 0,
+  modifiedCount: 0,
+  deletedCount: 0,
+  upsertedCount: 0,
+  upsertedIds: {},
+  insertedIds: { '0': 1, '1': 2, '2': 3, '3': 4, '4': 5 }
+}
+Write Errors: [
+  WriteError {
+    err: {
+      index: 0,
+      code: 11000,
+      errmsg: 'E11000 duplicate key error collection: learning.products index: _id_ dup key: { _id: 1 }',
+      errInfo: undefined,
+      op: {
+        _id: 1,
+        name: 'laptop',
+        category: 'electronics',
+        price: 20000,
+        releasedate: ISODate("2011-05-14T00:00:00.000Z")
+      }
+    }
+  }
+]
+learning> db.products.insertMany([{_id:1,name:"laptop",category:"electronics",price:20000,releasedate:ISODate("2011-05-14")},{_id:2,name:"mobile",category:"learning> db.products.insertMany([{_id:1,name:"laptop",category:"electronics",price:20000,releasedate:ISODate("2011-05-14")},{_id:2,name:"mobile",category:"electronics",price:40000,releasedate:ISODate("2012-09-15")},{_id:3,name:"prada",category:"clothes",price:80000,releasedate:ISODate("2019-08-24")},{_id:4,name:"fendi",category:"clothes",price:2000,releasedate:ISODate("2021-09-12")},{_id:5,name:"airforce-1",category:"shoes",price:2000,releasedate:ISODate("2022-03-14")}])
+{
+  acknowledged: true,
+  insertedIds: { '0': 1, '1': 2, '2': 3, '3': 4, '4': 5 }
+}
+learning> db.products.find()
+[
+  {
+    _id: 1,
+    name: 'laptop',
+    category: 'electronics',
+    price: 20000,
+    releasedate: ISODate("2011-05-14T00:00:00.000Z")
+  },
+  {
+    _id: 2,
+    name: 'mobile',
+    category: 'electronics',
+    price: 40000,
+    releasedate: ISODate("2012-09-15T00:00:00.000Z")
+  },
+  {
+    _id: 3,
+    name: 'prada',
+    category: 'clothes',
+    price: 80000,
+    releasedate: ISODate("2019-08-24T00:00:00.000Z")
+  },
+  {
+    _id: 4,
+    name: 'fendi',
+    category: 'clothes',
+    price: 2000,
+    releasedate: ISODate("2021-09-12T00:00:00.000Z")
+  },
+  {
+    _id: 5,
+    name: 'airforce-1',
+    category: 'shoes',
+    price: 2000,
+    releasedate: ISODate("2022-03-14T00:00:00.000Z")
+  }
+]
+learning> db.products.find({ price: { $eq: 599 } }, { name: 1, price: 1 })
+
+learning> db.products.find({ price: { $eq: 20000 } }, { name: 1, price: 1 })
+[ { _id: 1, name: 'laptop', price: 20000 } ]
+learning> db.product1.insertMany([{_id:1, name:"iphone",contact:[1234,115]},{])
+Uncaught:
+SyntaxError: Unexpected token (1:67)
+
+> 1 | db.product1.insertMany([{_id:1, name:"iphone",contact:[1234,115]},{])
+    |                                                                    ^
+  2 |
+learning>  db.product1.insertMany([{_id:1, name:"iphone",contact:[1234,115]},{_id:2,name:"s23",contact:[111,112]},{_id:3,name:"motoG3",contact:[114,115,223]},{_id:4,name:"xiaomi",contact:[116,117,118,119]}])
+{ acknowledged: true, insertedIds: { '0': 1, '1': 2, '2': 3, '3': 4 } }
+learning> db.product1.find({contact:{$size:4}})
+[ { _id: 4, name: 'xiaomi', contact: [ 116, 117, 118, 119 ] } ]
+learning>
