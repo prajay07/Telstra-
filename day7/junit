@@ -1,1 +1,65 @@
-abc
+Calculationtest ____JUnit
+
+package com.telstra.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.telstra.Calculation;
+
+public class CalculationTest {
+
+	Calculation calculation=null;
+	
+	@Test
+	public void testaddition()
+	{
+		Calculation calculation=new Calculation();
+		
+		assertEquals(4, calculation.addition(2, 2));
+		System.out.println("---------1.---test addition");
+		
+	}
+	@Test
+	public void testsubstraction()
+	{
+		Calculation calculation=new Calculation();
+		
+		assertEquals(4, calculation.substraction(4, 2));
+		
+		System.out.println("---------2.---test substraction");
+	}
+	
+	public void eligibiltytestTrueCondn()
+	{
+		Calculation calculation=new Calculation();
+		assertTrue(calculation.checkEligibility(34));
+		
+		System.out.println("---------3.---test true condn");
+	}
+	
+	public void eligibiltytestFalseCondn()
+	{
+		Calculation calculation=new Calculation();
+		assertFalse(calculation.checkEligibility(14));
+		
+		System.out.println("---------4.---test false condn");
+	}
+	
+	@Before
+	public void test1()
+	{
+		System.out.println("----before---");
+	}
+	
+	@After
+	public void test2()
+	{
+		System.out.println("----after---");
+	}
+}
+
+
